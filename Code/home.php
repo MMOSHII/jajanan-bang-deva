@@ -13,19 +13,18 @@ if ($conn->connect_error) {
 $sql_stock = "SELECT nama_produk, modal, harga, stok FROM stok_produk";
 $result_stock = $conn->query($sql_stock);
 
-// Query 2: Fetch Transaction History
 $sql_transactions = "
     SELECT 
         histori_transaksi.nama_pelanggan, 
         stok_produk.nama_produk AS produk_dibeli, 
         histori_transaksi.jumlah, 
-        histori_transaksi.tanggal 
+        histori_transaksi.tanggal,
+        histori_transaksi.keuntungan
     FROM histori_transaksi 
     INNER JOIN stok_produk 
     ON histori_transaksi.produk_dibeli = stok_produk.id_produk 
     ORDER BY histori_transaksi.tanggal DESC";
 $result_transactions = $conn->query($sql_transactions);
-
 ?>
 
 
@@ -120,6 +119,7 @@ $result_transactions = $conn->query($sql_transactions);
                   <th>Produk dibeli</th>
                   <th>Jumlah</th>
                   <th>Tanggal</th>
+                  <th>Keuntungan</th>
                 </tr>
               </thead>
               <tbody>
@@ -131,7 +131,7 @@ $result_transactions = $conn->query($sql_transactions);
                         echo "<td>" . htmlspecialchars($row["produk_dibeli"]) . "</td>";
                         echo "<td>" . htmlspecialchars($row["jumlah"]) . " pcs</td>";
                         echo "<td>" . date("d M Y", strtotime($row["tanggal"])) . "</td>";
-                        // echo "<td>Rp " . number_format($row["keuntungan"], 0, ',', '.') . "</td>";
+                        echo "<td>Rp " . number_format($row["keuntungan"], 0, ',', '.') . "</td>";
                         echo "</tr>";
                     }
                 } else {
