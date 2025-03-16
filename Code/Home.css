@@ -148,6 +148,23 @@ body {
   margin-bottom: 25px;
 }
 
+.goal-button {
+  background-color: red;
+  color: white;
+  border: none;
+  width: 24px;
+  margin-left: 10px;
+  height: 24px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0;
+}
+
 .goal-card {
   background-color: white;
   border-radius: 15px;
