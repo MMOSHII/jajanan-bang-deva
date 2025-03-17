@@ -1,2 +1,3 @@
 # jajanan-bang-deva
-beli dua 15 ribu
+
+Untuk menyelesaikan projek perkuliahan Sisteminformasi manajemen
