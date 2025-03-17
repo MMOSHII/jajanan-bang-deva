@@ -184,7 +184,7 @@ $result_transactions = $conn->query($sql_transactions);
                   <div class="expense-bar-fill expense-kitchen" style="width: 50%"></div>
                 </div>
               </div>
-
+              
               <div class="expense-item">
                 <div class="expense-label">
                   <span class="expense-name">Transportasi</span>
