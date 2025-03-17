@@ -1,0 +1,314 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+/* Sidebar styles */
+.sidebar {
+  width: 250px;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.logo {
+  font-size: 24px;
+  margin-right: 10px;
+}
+
+.brand-name {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  color: #666;
+}
+
+.menu-item.active {
+  background-color: #ffe8e8;
+  color: #ff3333;
+}
+
+.menu-item:hover:not(.active) {
+  background-color: #f5f5f5;
+}
+
+.menu-icon {
+  margin-right: 15px;
+  width: 20px;
+  text-align: center;
+  font-size: 18px;
+}
+
+/* Main content styles */
+.main-content {
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto;
+}
+
+.page-title {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.page-subtitle {
+  color: #999;
+  margin-bottom: 30px;
+  margin-top: 0.5rem;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+}
+
+.card {
+  background-color: white;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  margin-bottom: 25px;
+}
+
+.card-title {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Product stock styles */
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.product-table th {
+  text-align: left;
+  padding: 10px 15px;
+  border-bottom: 1px solid #eee;
+  color: #ff3333;
+  font-weight: 500;
+}
+
+.product-table td {
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+/* Transaction history styles */
+.transaction-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.transaction-table th {
+  text-align: left;
+  padding: 10px 15px;
+  border-bottom: 1px solid #eee;
+  color: #ff3333;
+  font-weight: 500;
+}
+
+.transaction-table td {
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+/* Goals styles */
+.goals-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.goal-card {
+  background-color: white;
+  border-radius: 15px;
+  padding: 20px;
+  flex: 1;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+.goal-amount {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.goal-date {
+  color: #999;
+  margin-bottom: 15px;
+}
+
+.goal-title {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+/* Expenses stats styles */
+.content {
+  flex: 1;
+  padding: 30px;
+  background-color: #fbfbfb;
+}
+
+.header {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.subheader {
+  color: #888;
+  margin-bottom: 30px;
+}
+
+.chart-container {
+  background-color: white;
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.chart-title {
+  font-size: 22px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.chart-canvas-container {
+  height: 300px;
+  width: 100%;
+}
+
+.expense-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.expense-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  margin-right: 15px;
+}
+
+.expense-icon.kitchen {
+  color: #ff6b6b;
+  background-color: #fff0f0;
+}
+
+.expense-icon.transport {
+  color: #4dabf7;
+  background-color: #e7f5ff;
+}
+
+.expense-icon.other {
+  color: #40c057;
+  background-color: #ebfbee;
+}
+
+.expense-bar {
+  display: flex;
+  align-items: center; /* Aligns percentage and bar vertically */
+  gap: 10px; /* Adjust spacing between the bar and percentage */
+}
+
+.progress-container {
+  flex: 1; /* Ensures it takes up available space */
+  height: 10px;
+  background-color: #e9ecef;
+  border-radius: 5px;
+  margin-right: 15px;
+  width: 400px; /* Increase this value for a longer bar */
+}
+
+.progress-bar {
+  height: 100%;
+  border-radius: 5px;
+}
+
+.progress-bar.kitchen {
+  background-color: #ff6b6b;
+  width: 50%;
+}
+
+.progress-bar.transport {
+  background-color: #4dabf7;
+  width: 30%;
+}
+
+.progress-bar.other {
+  background-color: #40c057;
+  width: 20%;
+}
+
+.percentage {
+  font-size: 16px; /* Adjust size to match the design */
+  font-weight: bold;
+  white-space: nowrap; /* Prevents wrapping */
+}
+
+.expense-label {
+  color: #adb5bd;
+  margin-top: 5px;
+}
+
+/* Responsive styles */
+@media (max-width: 1200px) {
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .main-content {
+    padding: 15px;
+  }
+
+  .goals-container {
+    flex-direction: column;
+  }
+}
