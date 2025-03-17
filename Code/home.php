@@ -54,7 +54,7 @@ $result_transactions = $conn->query($sql_transactions);
         Transaksi
       </a>
 
-      <a href="#" class="menu-item">
+      <a href="Stock.php" class="menu-item">
         <span class="menu-icon">📦</span>
         Stok Produk
       </a>
