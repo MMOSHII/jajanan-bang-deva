@@ -44,7 +44,7 @@ $result_stock = $conn->query($sql_stock);
         Stok Produk
       </a>
 
-      <a href="Stats.html" class="menu-item">
+      <a href="Stats.php" class="menu-item">
         <span class="menu-icon">📊</span>
         Pemasukan & Pengeluaran
       </a>
