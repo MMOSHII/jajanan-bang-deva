@@ -17,7 +17,7 @@ $sql_transactions = "
         stok_produk.harga AS harga, 
         histori_transaksi.jumlah, 
         histori_transaksi.tanggal,
-        histori_transaksi.keuntungan
+        stok_produk.harga * histori_transaksi.jumlah as keuntungan
     FROM histori_transaksi 
     INNER JOIN stok_produk 
     ON histori_transaksi.produk_dibeli = stok_produk.id_produk 
@@ -51,7 +51,7 @@ $result_transactions = $conn->query($sql_transactions);
         Transaksi
       </a>
 
-      <a href="#" class="menu-item">
+      <a href="Stock.php" class="menu-item">
         <span class="menu-icon">📦</span>
         Stok Produk
       </a>
