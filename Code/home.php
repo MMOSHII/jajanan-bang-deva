@@ -59,7 +59,7 @@ $result_transactions = $conn->query($sql_transactions);
         Stok Produk
       </a>
 
-      <a href="#" class="menu-item">
+      <a href="Stats.php" class="menu-item">
         <span class="menu-icon">📊</span>
         Pemasukan & Pengeluaran
       </a>

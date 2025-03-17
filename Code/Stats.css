@@ -207,7 +207,7 @@ body {
 
 .chart-canvas-container {
   height: 300px;
-  width: 100%;
+  width: 80%;
 }
 
 .expense-item {
@@ -253,7 +253,7 @@ body {
   background-color: #e9ecef;
   border-radius: 5px;
   margin-right: 15px;
-  width: 400px; /* Increase this value for a longer bar */
+  width: 1000px; /* Increase this value for a longer bar */
 }
 
 .progress-bar {
