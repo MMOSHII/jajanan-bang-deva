@@ -1,14 +1,5 @@
 <?php
-$host = "localhost";
-$user = "root";
-$pass = "";
-$dbname = "db_sim_bgdeva";
-
-$conn = new mysqli($host, $user, $pass, $dbname);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+require 'config.php';
 
 $sql_stock = "SELECT nama_produk, modal, harga, stok FROM stok_produk";
 $result_stock = $conn->query($sql_stock);
@@ -37,38 +28,8 @@ $result_transactions = $conn->query($sql_transactions);
     <title>Jajanan Bang Deva - Dashboard</title>
   </head>
   <body>
-    <!-- Sidebar navigation -->
-    <div class="sidebar">
-      <div class="logo-container">
-        <div class="logo">🍴</div>
-        <div class="band-name">Jajanan Bang Deva</div>
-      </div>
-
-      <a href="home.php" class="menu-item active">
-        <span class="menu-icon">🏠</span>
-        Beranda
-      </a>
-
-      <a href="Transaction.php" class="menu-item">
-        <span class="menu-icon">📋</span>
-        Transaksi
-      </a>
-
-      <a href="Stock.php" class="menu-item">
-        <span class="menu-icon">📦</span>
-        Stok Produk
-      </a>
-
-      <a href="Stats.php" class="menu-item">
-        <span class="menu-icon">📊</span>
-        Pemasukan & Pengeluaran
-      </a>
-
-      <a href="#" class="menu-item">
-        <span class="menu-icon">📝</span>
-        Catatan
-      </a>
-    </div>
+    
+  <?php include 'sidebar.php'; ?>
 
     <!-- Main content area -->
     <div class="main-content">

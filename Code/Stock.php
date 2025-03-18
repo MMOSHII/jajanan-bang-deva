@@ -1,14 +1,5 @@
 <?php
-$host = "localhost";
-$user = "root";
-$pass = "";
-$dbname = "db_sim_bgdeva";
-
-$conn = new mysqli($host, $user, $pass, $dbname);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+require 'config.php';
 
 $sql_stock = "SELECT * FROM stok_produk";
 $result_stock = $conn->query($sql_stock);
@@ -23,37 +14,8 @@ $result_stock = $conn->query($sql_stock);
     <title>Stok Produk - Jajanan Bang Deva</title>
   </head>
   <body>
-    <div class="sidebar">
-      <div class="logo-container">
-        <div class="logo">🍴</div>
-        <div class="brand-name">Jajanan Bang Deva</div>
-      </div>
-
-      <a href="Home.php" class="menu-item">
-        <span class="menu-icon">🏠</span>
-        Beranda
-      </a>
-
-      <a href="Transaction.php" class="menu-item">
-        <span class="menu-icon">📋</span>
-        Transaksi
-      </a>
-
-      <a href="Stock.php" class="menu-item active">
-        <span class="menu-icon">📦</span>
-        Stok Produk
-      </a>
-
-      <a href="Stats.php" class="menu-item">
-        <span class="menu-icon">📊</span>
-        Pemasukan & Pengeluaran
-      </a>
-
-      <a href="#" class="menu-item">
-        <span class="menu-icon">📝</span>
-        Catatan
-      </a>
-    </div>
+    
+  <?php include 'sidebar.php'; ?>
 
     <div class="main-content">
       <h1 class="page-title">Stok Produk</h1>
