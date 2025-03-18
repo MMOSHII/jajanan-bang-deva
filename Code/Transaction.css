@@ -80,6 +80,7 @@ body {
 .page-subtitle {
   color: #999;
   margin-bottom: 30px;
+  margin-top: 0.5rem;
 }
 
 .content-grid {
@@ -147,7 +148,7 @@ body {
   overflow-x: auto;
 }
 
-.tabs button {
+button {
   background: linear-gradient(135deg, #ff7e5f, #feb47b); /* Warm gradient */
   border: none;
   border-radius: 12px;
@@ -161,31 +162,48 @@ body {
   margin: 0 1rem 1.2rem 0;
 }
 
-.tabs button:hover {
+button:hover {
   transform: translateY(-3px);
   box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.15);
   background: linear-gradient(135deg, #ff6b6b, #ffa07a);
 }
 
-.tabs button.active {
+button.active {
   background: linear-gradient(135deg, #d53369, #cbad6d);
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.tabs button.add {
+button.add {
   background: white;
   color: #d53369;
   border: 2px solid #d53369;
 }
 
-.tabs button.add:hover {
+button.add:hover {
   background: #d53369;
   color: white;
+}
+
+button.add-new {
+  display: flex;
+  position: absolute;
+  right: 80px;
+  margin-top: 1rem;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: larger;
 }
 
 /* miscellaneous  styles */
 .lower-part {
   margin-top: 1rem;
+}
+
+.lower {
+  margin-top: 3rem;
 }
 
 /* Responsive styles */
