@@ -7,7 +7,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $jumlah = $_POST["jumlah"];
     $tanggal = $_POST["tanggal"];
 
-    // Simpan ke database
     $sql = "INSERT INTO histori_transaksi (nama_pelanggan, produk_dibeli, jumlah, tanggal) 
             VALUES ('$nama_pelanggan', '$produk_dibeli', '$jumlah', '$tanggal')";
 
