@@ -1,6 +1,22 @@
 <?php
 require 'config.php';
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $nama_pelanggan = $_POST["nama_pelanggan"];
+    $produk_dibeli = $_POST["produk_dibeli"];
+    $jumlah = $_POST["jumlah"];
+    $tanggal = $_POST["tanggal"];
+
+    $sql = "INSERT INTO histori_transaksi (nama_pelanggan, produk_dibeli, jumlah, tanggal) 
+            VALUES ('$nama_pelanggan', '$produk_dibeli', '$jumlah', '$tanggal')";
+
+    if ($conn->query($sql) === TRUE) {
+        header("Location: Transaction.php");
+    } else {
+        echo "Error: " . $conn->error;
+    }
+}
+
 $sql_transactions = "
     SELECT 
         histori_transaksi.nama_pelanggan, 
@@ -12,7 +28,7 @@ $sql_transactions = "
     FROM histori_transaksi 
     INNER JOIN stok_produk 
     ON histori_transaksi.produk_dibeli = stok_produk.id_produk 
-    ORDER BY histori_transaksi.tanggal DESC";
+    ORDER BY histori_transaksi.tanggal ASC";
 $result_transactions = $conn->query($sql_transactions);
 ?>
 
@@ -32,31 +48,29 @@ $result_transactions = $conn->query($sql_transactions);
       <h1 class="page-title">Transaksi</h1>
       <p class="page-subtitle">Detail transaksi tentang usaha Jajanan Bang Deva</p>
 
-      <div class="card">
-        <h2 class="card-title">Tambah Transaksi</h2>
-        <form action="tambahTransaction.php" method="POST">
-          <label for="nama_pelanggan">Nama Pelanggan:</label>
-          <input type="text" id="nama_pelanggan" name="nama_pelanggan" required />
-
-          <label for="produk_dibeli">Produk:</label>
-          <select id="produk_dibeli" name="produk_dibeli" required>
-            <?php
-            $sql_produk = "SELECT id_produk, nama_produk FROM stok_produk";
-            $result_produk = $conn->query($sql_produk);
-            while ($row = $result_produk->fetch_assoc()) {
-                echo "<option value='" . $row['id_produk'] . "'>" . $row['nama_produk'] . "</option>";
-            }
-            ?>
-          </select>
-
-          <label for="jumlah">Jumlah:</label>
-          <input type="number" id="jumlah" name="jumlah" required />
-
-          <label for="tanggal">Tanggal:</label>
-          <input type="date" id="tanggal" name="tanggal" required />
-
-          <button type="submit">Tambah Transaksi</button>
-        </form>
+      <div class="transaction-form">
+          <h2 class="form-title">Tambah Histori Transaksi</h2>
+          <form action="" method="POST">
+              <label for="nama_pelanggan">Nama Pelanggan:</label>
+              <input type="text" id="nama_pelanggan" name="nama_pelanggan" required />
+              <label for="produk_dibeli">Produk:</label>
+              <select id="produk_dibeli" name="produk_dibeli" required>
+                  <?php
+                  $sql_produk = "SELECT id_produk, nama_produk FROM stok_produk";
+                  $result_produk = $conn->query($sql_produk);
+                  while ($row = $result_produk->fetch_assoc()) {
+                      echo "<option value='" . $row['id_produk'] . "'>" . $row['nama_produk'] . "</option>";
+                  }
+                  ?>
+              </select>
+              <label for="harga">Harga:</label>
+              <input type="text" id="harga" name="harga" required />
+              <label for="jumlah">Jumlah:</label>
+              <input type="number" id="jumlah" name="jumlah" required />
+              <label for="tanggal">Tanggal:</label>
+              <input type="date" id="tanggal" name="tanggal" required />
+              <button type="submit">Tambah Transaksi</button>
+          </form>
       </div>
 
       <div class="card">
