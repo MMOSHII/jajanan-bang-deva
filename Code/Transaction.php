@@ -31,6 +31,34 @@
     <div class="main-content">
       <h1 class="page-title">Transaksi</h1>
       <p class="page-subtitle">Detail transaksi tentang usaha Jajanan Bang Deva</p>
+
+      <div class="card">
+        <h2 class="card-title">Tambah Transaksi</h2>
+        <form action="tambahTransaction.php" method="POST">
+          <label for="nama_pelanggan">Nama Pelanggan:</label>
+          <input type="text" id="nama_pelanggan" name="nama_pelanggan" required />
+
+          <label for="produk_dibeli">Produk:</label>
+          <select id="produk_dibeli" name="produk_dibeli" required>
+            <?php
+            $sql_produk = "SELECT id_produk, nama_produk FROM stok_produk";
+            $result_produk = $conn->query($sql_produk);
+            while ($row = $result_produk->fetch_assoc()) {
+                echo "<option value='" . $row['id_produk'] . "'>" . $row['nama_produk'] . "</option>";
+            }
+            ?>
+          </select>
+
+          <label for="jumlah">Jumlah:</label>
+          <input type="number" id="jumlah" name="jumlah" required />
+
+          <label for="tanggal">Tanggal:</label>
+          <input type="date" id="tanggal" name="tanggal" required />
+
+          <button type="submit">Tambah Transaksi</button>
+        </form>
+      </div>
+
       <div class="card">
         <h2 class="card-title">Histori Transaksi</h2>
         <table class="transaction-table">
