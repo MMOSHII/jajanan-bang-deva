@@ -1,19 +1,19 @@
 <?php
-require 'config.php';
+  require 'config.php';
 
-$sql_transactions = "
-    SELECT 
-        histori_transaksi.nama_pelanggan, 
-        stok_produk.nama_produk AS produk_dibeli, 
-        stok_produk.harga AS harga, 
-        histori_transaksi.jumlah, 
-        histori_transaksi.tanggal,
-        stok_produk.harga * histori_transaksi.jumlah as keuntungan
-    FROM histori_transaksi 
-    INNER JOIN stok_produk 
-    ON histori_transaksi.produk_dibeli = stok_produk.id_produk 
-    ORDER BY histori_transaksi.tanggal DESC";
-$result_transactions = $conn->query($sql_transactions);
+  $sql_transactions = "
+      SELECT 
+          histori_transaksi.nama_pelanggan, 
+          stok_produk.nama_produk AS produk_dibeli, 
+          stok_produk.harga AS harga, 
+          histori_transaksi.jumlah, 
+          histori_transaksi.tanggal,
+          stok_produk.harga * histori_transaksi.jumlah as keuntungan
+      FROM histori_transaksi 
+      INNER JOIN stok_produk 
+      ON histori_transaksi.produk_dibeli = stok_produk.id_produk 
+      ORDER BY histori_transaksi.tanggal DESC";
+  $result_transactions = $conn->query($sql_transactions);
 ?>
 
 <!DOCTYPE html>
