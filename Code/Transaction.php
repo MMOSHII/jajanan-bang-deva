@@ -70,8 +70,6 @@ if (!$result_transactions) {
                   }
                   ?>
               </select>
-              <label for="harga">Harga:</label>
-              <input type="text" id="harga" name="harga" required />
               <label for="jumlah">Jumlah:</label>
               <input type="number" id="jumlah" name="jumlah" required />
               <label for="tanggal">Tanggal:</label>
@@ -80,7 +78,7 @@ if (!$result_transactions) {
           </form>
       </div>
       
-      <div id="editForm" style="display: none;">
+      <div class="edit-form" id="editForm" style="display: none;">
             <h2>Edit Transaksi</h2>
             <form id="formEdit">
                 <input type="hidden" id="edit_id_transaksi" name="id_transaksi">
@@ -142,9 +140,9 @@ if (!$result_transactions) {
                         method: 'POST',
                         body: formData
                     })
-                    .then(response => response.text())
+                    .then(response => confirm('Yakin ingin mengubah transaksi ini?'))
                     .then(data => {
-                        alert(data); // Tampilkan pesan sukses
+                        alert('Transaksi Berhasil Diubah.'); // Tampilkan pesan sukses
                         location.reload(); // Reload halaman untuk update data
                     })
                     .catch(error => console.error('Error:', error));
