@@ -1,4 +1,3 @@
-<!-- Sidebar navigation -->
 <div class="sidebar">
   <div class="logo-container">
     <div class="logo">🍴</div>
@@ -27,7 +26,7 @@
     Pemasukan & Pengeluaran
   </a>
 
-  <a href="#" class="menu-item <?= ($current_page == 'note.php') ? 'active' : ''; ?>">
+  <a href="Note.php" class="menu-item <?= ($current_page == 'note.php') ? 'active' : ''; ?>">
     <span class="menu-icon">📝</span>
     Catatan
   </a>

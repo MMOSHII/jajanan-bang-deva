@@ -1,22 +1,6 @@
 <?php
 require 'config.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nama_pelanggan = $_POST["nama_pelanggan"];
-    $produk_dibeli = $_POST["produk_dibeli"];
-    $jumlah = $_POST["jumlah"];
-    $tanggal = $_POST["tanggal"];
-
-    $sql = "INSERT INTO histori_transaksi (nama_pelanggan, produk_dibeli, jumlah, tanggal) 
-            VALUES ('$nama_pelanggan', '$produk_dibeli', '$jumlah', '$tanggal')";
-
-    if ($conn->query($sql) === TRUE) {
-        header("Location: Transaction.php");
-    } else {
-        echo "Error: " . $conn->error;
-    }
-}
-
 $sql_transactions = "
     SELECT 
         histori_transaksi.id_histori,
@@ -29,7 +13,7 @@ $sql_transactions = "
     FROM histori_transaksi 
     INNER JOIN stok_produk 
     ON histori_transaksi.produk_dibeli = stok_produk.id_produk 
-    ORDER BY histori_transaksi.tanggal ASC";
+    ORDER BY histori_transaksi.tanggal DESC";
 $result_transactions = $conn->query($sql_transactions);
 
 if (!$result_transactions) {
