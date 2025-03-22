@@ -14,11 +14,12 @@
         <div class="popup" onclick="event.stopPropagation()">
             <span class="close-btn" onclick="closePopup(event)">x</span>
             <h2>Add Note</h2>
-            <form action="save_note.php" method="POST">
+            <form action="Note_proses.php" method="POST">
                 <label for="judul">Judul:</label>
                 <input type="text" name="judul" required><br><br>
                 <label for="note">Isi catatan:</label>
                 <input type="text" name="note" required><br><br>
+                <input type="hidden" name="action" value="add">
                 <button type="submit">Submit</button>
             </form>
         </div>
@@ -33,38 +34,21 @@
         <?php
         $files = glob("./pesan/*.txt");
 
-
         foreach ($files as $file) {
-            $filename = basename($file, ".txt");
+          $filename = basename($file);
+          $data = json_decode(file_get_contents($file), true);
+          $Title = $data['title'] ?? 'Untitled';
+          $note = $data['content'] ?? '';
 
             echo '<div class="note-card"><div class="note-header">';
-            echo $filename;
-            echo '<button class="edit-button" onclick="openModal(this)" title="Edit Catatan">✏️</button>';
+            echo '<span class="note-title">' . htmlspecialchars($Title) . '</span>';
+            echo '<button class="edit-button" onclick="openModal(this, \'' . htmlspecialchars($filename) . '\')" title="Edit Catatan">✏️</button>';
+            echo '<button class="delete-button" onclick="DeleteNote(\'' . htmlspecialchars($filename) . '\')" title="Hapus Catatan">🗑️</button>';
             echo "</div>";
-            echo '<p class="note-text">' . file_get_contents($file) . "</p>";
-            // echo "<a href='delete.php?file=$filename'>Delete</a>";
+            echo '<p class="note-text">' . htmlspecialchars($note) . '</p>';
             echo "</div>";
         }
         ?>
-
-        
-        <div class="note-card">
-          <div class="note-header">
-            Catatan 1
-            <button class="edit-button" onclick="openModal(this)" title="Edit Catatan">✏️</button>
-          </div>
-          <p class="note-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed rutrum nibh ut volutpat molestie.</p>
-        </div>
-
-
-        <div class="note-card">
-          <div class="note-header">
-            Catatan 1
-            <button class="edit-button" onclick="openModal(this)" title="Edit Catatan">✏️</button>
-          </div>
-          <p class="note-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed rutrum nibh ut volutpat molestie.</p>
-        </div>
-
 
       </div>
 
@@ -75,18 +59,22 @@
         <h3>Edit Catatan</h3>
         <textarea id="editText"></textarea>
         <div class="modal-buttons">
-          <button onclick="saveEdit()">Simpan</button>
+          <button onclick="EditNote()">Simpan</button>
           <button onclick="closeModal()">Batal</button>
         </div>
       </div>
     </div>
     <div class="content" id="mainContent">
+      
     <script>
         let currentNoteText = null;
+        let currentFilename  = null; 
       
-        function openModal(button) {
-          const noteText = button.closest('.note-card').querySelector('.note-text');
+        function openModal(button, filename) {
+          const noteText = button.closest('.note-card').querySelector('.note-text')
+
           currentNoteText = noteText;
+          currentFilename = filename;
       
           document.getElementById('editText').value = noteText.textContent;
           document.getElementById('editModal').style.display = 'flex';
@@ -98,12 +86,31 @@
           document.getElementById('mainContent').classList.remove('blur');
         }
       
-        function saveEdit() {
+        function EditNote() {
+          if (!currentFilename) return;
+
           const newText = document.getElementById('editText').value;
-          if (currentNoteText) {
-            currentNoteText.textContent = newText;
+          let formData = new FormData();
+          formData.append("action", "edit");
+          formData.append("file", currentFilename);
+          formData.append("content", newText);
+
+          fetch('Note_proses.php', {
+              method: 'POST',
+              body: formData
+          }).then(response => response.text())
+            .then(data => {
+                if (currentNoteText) {
+                    currentNoteText.textContent = newText;
+                }
+                closeModal();
+          });
+        }
+
+        function DeleteNote(filename) {
+          if (confirm("Yakin Dek?")) {
+              window.location.href = 'Note_proses.php?delete=' + encodeURIComponent(filename);
           }
-          closeModal();
         }
 
         function openPopup() {
