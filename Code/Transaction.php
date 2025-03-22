@@ -70,6 +70,8 @@ if (!$result_transactions) {
                   }
                   ?>
               </select>
+              <label for="harga">Harga:</label>
+              <input type="text" id="harga" name="harga" required />
               <label for="jumlah">Jumlah:</label>
               <input type="number" id="jumlah" name="jumlah" required />
               <label for="tanggal">Tanggal:</label>
