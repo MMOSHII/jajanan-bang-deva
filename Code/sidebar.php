@@ -26,7 +26,7 @@
     Pemasukan & Pengeluaran
   </a>
 
-  <a href="Note.php" class="menu-item <?= ($current_page == 'note.php') ? 'active' : ''; ?>">
+  <a href="Note.php" class="menu-item <?= ($current_page == 'Note.php') ? 'active' : ''; ?>">
     <span class="menu-icon">📝</span>
     Catatan
   </a>
