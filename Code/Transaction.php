@@ -182,8 +182,7 @@ if (!$result_transactions) {
                                   data-tanggal='" . $row['tanggal'] . "'>
                                   Edit
                               </button>
-                        </td>";
-                        echo "<td>
+                              
                             <form action='crudTransaction.php' method='POST' style='display:inline-block;'>
                                 <input type='hidden' name='id_histori' value='" . $row['id_histori'] . "' />
                                 <button type='submit' name='action' value='delete' onclick=\"return confirm('Yakin ingin menghapus transaksi ini?');\">Hapus</button>
