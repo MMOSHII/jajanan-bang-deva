@@ -1,0 +1,198 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.logo {
+  font-size: 24px;
+  margin-right: 10px;
+}
+
+.brand-name {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  color: #666;
+}
+
+.menu-item.active {
+  background-color: #ffe8e8;
+  color: #ff3333;
+}
+
+.menu-item:hover:not(.active) {
+  background-color: #f5f5f5;
+}
+
+.menu-icon {
+  margin-right: 15px;
+  width: 20px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.content {
+  padding: 40px;
+  font-family: "Poppins", sans-serif;
+}
+
+.subtitle {
+  color: #aaa;
+  margin-bottom: 30px;
+}
+
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 25px;
+}
+
+.note-card {
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  background-color: #fff;
+  transition: transform 0.2s ease;
+}
+
+.note-card:hover {
+  transform: translateY(-5px);
+}
+
+.note-header {
+  display: flex;
+  justify-content: space-between;
+  background-color: #ffeaea;
+  color: #ff3b3b;
+  font-weight: bold;
+  padding: 12px;
+  font-size: 18px;
+}
+
+.note-text {
+  padding: 15px;
+  color: #666;
+  font-size: 14px;
+}
+
+.add-button {
+  display: flex;
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  background-color: #ff3b3b;
+  color: white;
+  font-size: 29px;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-button:hover {
+  background-color: #e63232;
+}
+
+.edit-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1em;
+  margin-left: auto;
+  transition: transform 0.2s;
+}
+
+.edit-button:hover {
+  transform: scale(1.2);
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(5px); /* efek blur */
+  background-color: rgba(0, 0, 0, 0.3); /* sedikit gelap */
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 24px;
+  border-radius: 16px;
+  width: 500px; /* lebih lebar */
+  max-width: 90%;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+#editText {
+  width: 100%;
+  height: 180px; /* lebih tinggi */
+  font-size: 1em;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.modal-content h3 {
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+.modal-buttons {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+/* Blur konten belakang jika modal aktif */
+.blur {
+  filter: blur(4px);
+  pointer-events: none;
+}
