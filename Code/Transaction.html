@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jajanan Bang Deva - Transaksi</title>
+    <link rel="stylesheet" href="Transaction.css" />
+  </head>
+  <body>
+    <!-- Sidebar navigation -->
+    <div class="sidebar">
+      <div class="logo-container">
+        <div class="logo">🍴</div>
+        <div class="brand-name">Jajanan Bang Deva</div>
+      </div>
+
+      <a href="Home.html" class="menu-item">
+        <span class="menu-icon">🏠</span>
+        Beranda
+      </a>
+
+      <a href="Transaction.html" class="menu-item active">
+        <span class="menu-icon">📋</span>
+        Transaksi
+      </a>
+
+      <a href="Stock.html" class="menu-item">
+        <span class="menu-icon">📦</span>
+        Stok Produk
+      </a>
+
+      <a href="Stats.html" class="menu-item">
+        <span class="menu-icon">📊</span>
+        Pemasukan & Pengeluaran
+      </a>
+
+      <a href="Note.html" class="menu-item">
+        <span class="menu-icon">📝</span>
+        Catatan
+      </a>
+    </div>
+    <div class="main-content">
+      <h1 class="page-title">Transaksi</h1>
+      <p class="page-subtitle">Detail transaksi tentang usaha Jajanan Bang Deva</p>
+      <div class="tabs">
+        <h2>Tambah Transaksi</h2>
+        <form class="form-transaksi">
+          <label>
+            Nama Pelanggan:
+            <input type="text" name="nama" />
+          </label>
+
+          <label>
+            Produk:
+            <select name="produk">
+              <option value="kebab">Kebab</option>
+              <option value="sostel">Sostel</option>
+              <option value="dimsum">Dimsum</option>
+              <option value="lumpia">Lumpia</option>
+              <option value="gohyong">Gohyong</option>
+              <!-- Tambahkan produk lain sesuai kebutuhan -->
+            </select>
+          </label>
+
+          <label>
+            Jumlah:
+            <input type="number" name="jumlah" />
+          </label>
+
+          <label>
+            Tanggal:
+            <input type="date" name="tanggal" />
+          </label>
+
+          <button type="submit" class="btn-tambah">Tambah Transaksi</button>
+        </form>
+      </div>
+      <div class="card">
+        <h2 class="card-title">Histori Transaksi</h2>
+        <table class="transaction-table">
+          <thead>
+            <tr>
+              <th>Pelanggan</th>
+              <th>Produk Dibeli</th>
+              <th>Harga</th>
+              <th>Jumlah</th>
+              <th>Tanggal</th>
+              <th>Keuntungan</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Aqil</td>
+              <td>Kebab</td>
+              <td>Rp.7000</td>
+              <td>1 Pcs</td>
+              <td>15 Maret 2025</td>
+              <td>Rp.7000</td>
+            </tr>
+            <tr>
+              <td>Sultansyah</td>
+              <td>Kebab</td>
+              <td>Rp.7000</td>
+              <td>3 Pcs</td>
+              <td>15 Maret 2025</td>
+              <td>Rp.21000</td>
+            </tr>
+            <tr>
+              <td>Yazid</td>
+              <td>Kebab</td>
+              <td>Rp.7000</td>
+              <td>1 Pcs</td>
+              <td>15 Maret 2025</td>
+              <td>Rp.7000</td>
+            </tr>
+            <tr>
+              <td>Achmad</td>
+              <td>Kebab</td>
+              <td>Rp.7000</td>
+              <td>3 Pcs</td>
+              <td>15 Maret 2025</td>
+              <td>Rp.21000</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="lower">
+          <p class="lower-part">Jajanan Bang Deva</p>
+          <p class="lower-part date">Tanggal : 9 Agustus 1945</p>
+          <p class="lower-part total profit">Total Keuntungan: Rp. 83.000</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
