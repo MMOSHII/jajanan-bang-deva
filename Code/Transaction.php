@@ -13,7 +13,7 @@ $sql_transactions = "
     FROM histori_transaksi 
     INNER JOIN stok_produk 
     ON histori_transaksi.produk_dibeli = stok_produk.id_produk 
-    ORDER BY histori_transaksi.tanggal DESC";
+    ORDER BY histori_transaksi.tanggal ASC";
 $result_transactions = $conn->query($sql_transactions);
 
 if (!$result_transactions) {
@@ -88,53 +88,98 @@ if (!$result_transactions) {
                 <button type="submit">Simpan Perubahan</button>
             </form>
         </div>
-        <div class="card">
-            <h2 class="card-title">Histori Transaksi</h2>
-            <table class="transaction-table">
-                <thead>
-                    <tr>
-                        <th>Pelanggan</th>
-                        <th>Produk Dibeli</th>
-                        <th>Jumlah</th>
-                        <th>Tanggal</th>
-                        <th>Keuntungan</th>
-                    </tr>
-                </thead>
-                <tbody>
-                <?php
-                    if ($result_transactions->num_rows > 0) {
-                        while ($row = $result_transactions->fetch_assoc()) {
-                            echo "<tr>";
-                            echo "<td>" . htmlspecialchars($row["nama_pelanggan"]) . "</td>";
-                            echo "<td>" . htmlspecialchars($row["produk_dibeli"]) . "</td>";
-                            echo "<td>" . htmlspecialchars($row["jumlah"]) . " pcs</td>";
-                            echo "<td>" . date("d M Y", strtotime($row["tanggal"])) . "</td>";
-                            echo "<td>Rp " . number_format($row["keuntungan"], 0, ',', '.') . "</td>";
-                            echo "<td>
-                                <button 
-                                    class='edit-btn' 
-                                    data-id='" . $row['id_histori'] . "' 
-                                    data-pelanggan='" . htmlspecialchars($row["nama_pelanggan"]) . "' 
-                                    data-produk='" . $row['produk_dibeli'] . "' 
-                                    data-jumlah='" . $row['jumlah'] . "' 
-                                    data-tanggal='" . $row['tanggal'] . "'>
-                                    Edit
-                                </button>
-                                
-                                <form action='crudTransaction.php' method='POST' style='display:inline-block;'>
-                                    <input type='hidden' name='id_histori' value='" . $row['id_histori'] . "' />
-                                    <button type='submit' name='action' value='delete' onclick=\"return confirm('Yakin ingin menghapus transaksi ini?');\">Hapus</button>
-                                </form>
-                            </td>";
-                            echo "</tr>";
-                        }
-                    } else {
-                        echo "<tr><td colspan='5'>Tidak ada transaksi ditemukan</td></tr>";
+
+        <script>
+        document.addEventListener("DOMContentLoaded", () => {
+        // Tombol Edit
+        document.querySelectorAll('.edit-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const id_transaksi = this.getAttribute('data-id');
+                const pelanggan = this.getAttribute('data-pelanggan');
+                const produk = this.getAttribute('data-produk');
+                const jumlah = this.getAttribute('data-jumlah');
+                const tanggal = this.getAttribute('data-tanggal');
+                
+                // Masukkan data ke dalam form
+                document.getElementById('edit_id_transaksi').value = id_transaksi;
+                document.getElementById('edit_nama_pelanggan').value = pelanggan;
+                document.getElementById('edit_produk_dibeli').value = produk;
+                document.getElementById('edit_jumlah').value = jumlah;
+                document.getElementById('edit_tanggal').value = tanggal;
+
+                // Tampilkan form
+                document.getElementById('editForm').style.display = 'block';
+            });
+        });
+
+                // Form Submit pakai AJAX
+                document.getElementById('formEdit').addEventListener('submit', function(e) {
+                    e.preventDefault(); // Hindari reload halaman
+                    
+                    const formData = new FormData(this);
+
+                    fetch('crudTransaction.php', {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => confirm('Yakin ingin mengubah transaksi ini?'))
+                    .then(data => {
+                        alert('Transaksi Berhasil Diubah.'); // Tampilkan pesan sukses
+                        location.reload(); // Reload halaman untuk update data
+                    })
+                    .catch(error => console.error('Error:', error));
+                });
+            });
+        </script>
+
+      <div class="card">
+        <h2 class="card-title">Histori Transaksi</h2>
+        <table class="transaction-table">
+          <thead>
+            <tr>
+              <th>Pelanggan</th>
+              <th>Produk Dibeli</th>
+              <th>Jumlah</th>
+              <th>Tanggal</th>
+              <th>Keuntungan</th>
+            </tr>
+          </thead>
+          <tbody>
+          <?php
+                if ($result_transactions->num_rows > 0) {
+                    while ($row = $result_transactions->fetch_assoc()) {
+                        echo "<tr>";
+                        echo "<td>" . htmlspecialchars($row["nama_pelanggan"]) . "</td>";
+                        echo "<td>" . htmlspecialchars($row["produk_dibeli"]) . "</td>";
+                        echo "<td>" . htmlspecialchars($row["jumlah"]) . " pcs</td>";
+                        echo "<td>" . date("d M Y", strtotime($row["tanggal"])) . "</td>";
+                        echo "<td>Rp " . number_format($row["keuntungan"], 0, ',', '.') . "</td>";
+                        echo "<td>
+                              <button 
+                                  class='edit-btn' 
+                                  data-id='" . $row['id_histori'] . "' 
+                                  data-pelanggan='" . htmlspecialchars($row["nama_pelanggan"]) . "' 
+                                  data-produk='" . $row['produk_dibeli'] . "' 
+                                  data-jumlah='" . $row['jumlah'] . "' 
+                                  data-tanggal='" . $row['tanggal'] . "'>
+                                  Edit
+                              </button>
+                              
+                            <form action='crudTransaction.php' method='POST' style='display:inline-block;'>
+                                <input type='hidden' name='id_histori' value='" . $row['id_histori'] . "' />
+                                <button type='submit' name='action' value='delete' onclick=\"return confirm('Yakin ingin menghapus transaksi ini?');\">Hapus</button>
+                            </form>
+                        </td>";
+                        echo "</tr>";
                     }
-                ?>
-                </tbody>
-            </table>
-        </div>
+                } else {
+                    echo "<tr><td colspan='5'>Tidak ada transaksi ditemukan</td></tr>";
+                }
+              ?>
+          </tbody>
+        </table>
+
+      </div>
     </div>
 
     <script>
