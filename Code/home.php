@@ -168,7 +168,7 @@ $result_transactions = $conn->query($sql_transactions);
             </div>
 
             <button class="action-button">Pemasukan dan Pengeluaran</button>
-            <a href="#" class="action-link">Lihat detail statistik disini.</a>
+            <a href="stats.php" class="action-link">Lihat detail statistik disini.</a>
           </div>
         </div>
       </div>

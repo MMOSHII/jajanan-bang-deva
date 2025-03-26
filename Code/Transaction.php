@@ -13,7 +13,7 @@ $sql_transactions = "
     FROM histori_transaksi 
     INNER JOIN stok_produk 
     ON histori_transaksi.produk_dibeli = stok_produk.id_produk 
-    ORDER BY histori_transaksi.tanggal DESC";
+    ORDER BY histori_transaksi.tanggal ASC";
 $result_transactions = $conn->query($sql_transactions);
 
 if (!$result_transactions) {
@@ -166,7 +166,6 @@ if (!$result_transactions) {
                                   data-tanggal='" . $row['tanggal'] . "'>
                                   Edit
                               </button>
-                              
                             <form action='crudTransaction.php' method='POST' style='display:inline-block;'>
                                 <input type='hidden' name='id_histori' value='" . $row['id_histori'] . "' />
                                 <button type='submit' name='action' value='delete' onclick=\"return confirm('Yakin ingin menghapus transaksi ini?');\">Hapus</button>
